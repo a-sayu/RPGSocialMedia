@@ -22,3 +22,24 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# NetBeans private project files (user-specific settings)
+**/nbproject/private/
+
+# NetBeans generated Makefiles
+**/nbproject/Makefile-*.mk
+
+# NetBeans generated packaging scripts
+**/nbproject/Package-*.bash
+
+# Build output directory
+build/
+
+# NetBeans build directory
+nbbuild/
+
+# Distribution artifacts
+dist/
+
+# NetBeans distribution directory
+nbdist/
