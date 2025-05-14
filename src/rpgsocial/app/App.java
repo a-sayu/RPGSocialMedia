@@ -1,0 +1,97 @@
+package rpgsocial.app;
+
+import java.io.*;
+import java.util.*;
+import rpgsocial.model.User;
+
+/**
+ * Classe responsável pela lógica do sistema.
+ * 
+ * Essa classe permite registrar novos usuários, persistir e carregar
+ * os dados dos usuários de um arquivo serializado, e recuperar a lista
+ * de todos os usuários registrados.
+ * 
+ * Por enquanto, a persistência será feita em um arquivo binário chamado {@code users.dat}.
+ * @author MIGUEL CAMPOS
+ */
+public class App {
+    
+    /** Nome do arquivo onde os usuários são persistidos. */
+    private static final String USERS_FILE = "users.dat";
+    
+    /** HashMap de usuários, indexados pelo nome. */
+    private Map<String, User> users = new HashMap<>();
+    
+    /**
+     * Construtor da aplicação. Carrega os usuários a partir do arquivo {@code users.dat}, se existir.
+     */
+    public App() {
+        loadUsers();
+    }
+    
+    /**
+     * Registra um novo usuário no sistema.
+     * 
+     * @param username o nome de usuário a ser registrado
+     * @param password a senha do usuário
+     * @return {@code true} se o registro foi bem-sucedido, ou {@code false} se o nome já estiver em uso
+     */
+    public boolean registerUser(String username, String password) {
+        if (users.containsKey(username)) {
+            return false;
+        }
+        
+        users.put(username, new User(username, password));
+        
+        saveUsers();
+        
+        return true;
+    }
+    
+    /**
+     * Retorna todos os usuários registrados no sistema.
+     * 
+     * @return uma coleção contendo todos os usuários
+     */
+    public Collection<User> getAllUsers() {
+        return users.values();
+    }
+    
+    /**
+     * Salva os usuários no arquivo {@code users.dat}.
+     * Esse método é chamado automaticamente após o registro de um novo usuário.
+     */
+    private void saveUsers() {
+                
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(USERS_FILE))) {
+            oos.writeObject(users);
+        } catch (IOException e) {
+            System.err.println("Erro ao carregar usuários: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * Salva todos os dados persistentes do sistema ao fechar.
+     * Atualmente, apenas os usuários são salvos.
+     */
+    public void saveAll() {
+        saveUsers();
+    }
+    
+    /**
+     * Carrega os usuários a partir do arquivo {@code users.dat}.
+     * Caso o arquivo não exista, o mapa de usuários permanece vazio.
+     */
+    private void loadUsers() {
+        
+        File file = new File(USERS_FILE);
+        
+        if (!file.exists()) { return; }
+        
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            users = (Map<String, User>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Erro ao carregar usuários: " + e.getMessage());
+        }
+    }
+}
