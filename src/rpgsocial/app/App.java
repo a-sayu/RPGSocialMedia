@@ -38,15 +38,26 @@ public class App {
      * Registra um novo usuário no sistema.
      * 
      * @param username o nome de usuário a ser registrado
+     * @param email o email do usuário
      * @param password a senha do usuário
-     * @return {@code true} se o registro foi bem-sucedido, ou {@code false} se o nome já estiver em uso
+     * @param age a idade do usuário
+     * @param city a cidade do usuário
+     * @param country o país do usuário
+     * @return {@code true} se o registro foi bem-sucedido,
+     * ou {@code false} se o nome ou o email já estiverem em uso
      */
-    public boolean registerUser(String username, String password) {
-        if (users.containsKey(username)) {
+    public boolean registerUser(String username, String email, String password, int age, String city, String country) {
+        if (users.containsKey(email)) {
             return false;
         }
         
-        users.put(username, new User(username, password));
+        for (User user : users.values()) {
+            if(user.getUsername().equalsIgnoreCase(username)) {
+                return false;
+            }
+        }
+        
+        users.put(email, new User(username, email, password, age, city, country));
         
         saveUsers();
         
@@ -58,15 +69,15 @@ public class App {
     /**
      * Conecta um usuário no sistema.
      * 
-     * @param username o nome de usuário tentando conectar
+     * @param email o email do usuário tentando conectar
      * @param password a senha do usuário
      * @return {@code true} se os dados informados estão 
      * corretos e a conexão foi bem-sucedido, ou 
      * {@code false} se já existir um usuário conectado
      * ou a senha estiver incorreta.
      */
-    public boolean loginUser(String username, String password) {
-        User user = users.get(username);
+    public boolean loginUser(String email, String password) {
+        User user = users.get(email);
         
         if ((user != null) && (user.checkPassword(password))) {
             userLogged = user;

@@ -38,31 +38,44 @@ public class Main {
             switch (option) {
                 case 1 -> {
                     
-                    System.out.print("Entre o usuario: ");
+                    System.out.print("Entre seu nome de usuario: ");
                     String username = scanner.nextLine();
                     
-                    System.out.print("Entre a senha: ");
+                    System.out.print("Entre seu email: ");
+                    String email = scanner.nextLine();
+                    
+                    System.out.print("Entre sua senha: ");
                     String password = scanner.nextLine();
                     
-                    if (app.registerUser(username, password)) {
+                    System.out.print("Entre sua idade: ");
+                    int age = scanner.nextInt();
+                    scanner.nextLine();
+                    
+                    System.out.print("Entre sua cidade: ");
+                    String city = scanner.nextLine();
+                    
+                    System.out.print("Entre seu pais: ");
+                    String country = scanner.nextLine();
+                    
+                    if (app.registerUser(username, email, password, age, city, country)) {
                         System.out.println("Usuario registrado com sucesso!");
                     } else {
-                        System.out.println("Nome de usuario ja existe.");
+                        System.out.println("Nome de usuario ou email já existentes.");
                     }
                 }
                 
                 case 2 -> {
                     
-                    System.out.print("Entre o usuario: ");
-                    String username = scanner.nextLine();
+                    System.out.print("Entre o email: ");
+                    String email = scanner.nextLine();
                     
                     System.out.print("Entre a senha: ");
                     String password = scanner.nextLine();
                     
-                    if (app.loginUser(username, password)) {
+                    if (app.loginUser(email, password)) {
                         System.out.println("Usuario conectado com sucesso!");
                     } else {
-                        System.out.println("Senha incorreta ou existe um usuario conectado.");
+                        System.out.println("Email ou senha incorretos ou existe um usuario conectado.");
                     }
                 }
                 
@@ -76,7 +89,7 @@ public class Main {
                 case 4 -> {
                     System.out.println("Nomes dos Usuarios registrados:");
                     for (User u : app.getAllUsers()) {
-                        System.out.println("- " + u.getUsername());
+                        System.out.println("- " + u);
                     }
                 }
                 case 5 -> {
