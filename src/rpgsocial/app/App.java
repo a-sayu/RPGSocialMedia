@@ -15,18 +15,15 @@ import rpgsocial.model.User;
  * @author MIGUEL CAMPOS
  */
 public class App {
-    
-    /** Nome do arquivo onde os usuários são persistidos. */
+   
     private static final String USERS_FILE = "users.dat";
     
-    /** HashMap de usuários, indexados pelo nome. */
     private Map<String, User> users = new HashMap<>();
     
-    /** HashMap de usuários, indexados pelo nome. */
     private User userLogged = null;
     
     /**
-     * Construtor da aplicação. Carrega os usuários a partir do arquivo {@code users.dat}, se existir.
+     *  Carrega os usuários a partir do arquivo {@code users.dat}, se existir.
      */
     public App() {
         loadUsers();
@@ -35,29 +32,23 @@ public class App {
     // ------------- Register -------------
     
     /**
-     * Registra um novo usuário no sistema.
+     * Registra um novo usuário no sistema, indexado pelo email único.
      * 
-     * @param username o nome de usuário a ser registrado
-     * @param email o email do usuário
-     * @param password a senha do usuário
-     * @param age a idade do usuário
-     * @param city a cidade do usuário
-     * @param country o país do usuário
      * @return {@code true} se o registro foi bem-sucedido,
      * ou {@code false} se o nome ou o email já estiverem em uso
      */
-    public boolean registerUser(String username, String email, String password, int age, String city, String country) {
-        if (users.containsKey(email)) {
+    public boolean registerUser(User user) {
+        if (users.containsKey(user.getEmail())) {
             return false;
         }
         
-        for (User user : users.values()) {
-            if(user.getUsername().equalsIgnoreCase(username)) {
+        for (User u : users.values()) {
+            if(u.getUsername().equalsIgnoreCase(user.getUsername())) {
                 return false;
             }
         }
         
-        users.put(email, new User(username, email, password, age, city, country));
+        users.put(user.getEmail(), user);
         
         saveUsers();
         
@@ -77,6 +68,10 @@ public class App {
      * ou a senha estiver incorreta.
      */
     public boolean loginUser(String email, String password) {
+        if (userLogged != null) {
+            return false;
+        }
+        
         User user = users.get(email);
         
         if ((user != null) && (user.checkPassword(password))) {
@@ -104,6 +99,9 @@ public class App {
         return userLogged;
     }
     
+    
+    // ------------- Persistence -------------
+    
     /**
      * Retorna todos os usuários registrados no sistema.
      * 
@@ -112,8 +110,6 @@ public class App {
     public Collection<User> getAllUsers() {
         return users.values();
     }
-    
-    // ------------- Persistence -------------
     
     /**
      * Salva todos os dados persistentes do sistema ao fechar.

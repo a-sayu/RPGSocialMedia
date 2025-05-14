@@ -1,6 +1,7 @@
 package rpgsocial.model;
 
 import java.io.Serializable;
+import java.util.*;
 
 /**
  * Representa um usuário do sistema de rede social RPG.
@@ -14,30 +15,29 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
     
-    /** Nome de usuário do sistema (único). */
     private static final long serialVersionUID = 1L;
-    
-    /** Nome de usuário do sistema (único). */
     private String username;
-    
-    /** Email do usuário. */
     private String email;
-    
-     /** Senha do usuário (armazenada em texto simples). */
     private String password;
-    
-    /** Idade do usuário. */
     private int age;
-    
-    /** Cidade do usuário. */
     private String city;
-    
-    /** País do usuário. */
     private String country;
+    
+    private Map<String, Concept> concepts = new HashMap<>();
     
     /**
      * Cria um novo usuário com o nome de usuário e senha fornecidos.
      * 
+     * @param username o nome de usuário do novo usuário
+     * @param email o email do novo usuário
+     * @param password a senha do novo usuário
+     * @param age a idade do novo usuário
+     * @param city a cidade do novo usuário
+     * @param country o país do novo usuário
+     */
+
+    /**
+     * Cria um novo usuário com o nome de usuário e senha fornecidos.
      * @param username o nome de usuário do novo usuário
      * @param email o email do novo usuário
      * @param password a senha do novo usuário
@@ -75,6 +75,20 @@ public class User implements Serializable {
      * @return {@code true} se a senha estiver correta, {@code false} caso contrário
      */
     public boolean checkPassword(String input) { return password.equals(input); }
+    
+    public boolean addConcept(Concept newConcept) {
+        
+        if (concepts.containsKey(newConcept.getName())) {
+            return false;
+        }
+        
+        concepts.put(newConcept.getName(), newConcept);
+        return true;
+    }
+    
+    public Collection<Concept> getConcepts() {
+        return concepts.values();
+    }
   
     /**
      * Retorna uma representação textual do usuário.
@@ -83,6 +97,21 @@ public class User implements Serializable {
      */
     @Override
     public String toString() {
-        return "User: " + username + "\nEmail: " + email + "\nIdade: " + age + "\nCidade: " + city + "\nPais: " + country;
+        StringBuilder sb = new StringBuilder();
+        sb.append("User: ").append(username)
+                .append("\nEmail: ").append(email)
+                .append("\nIdade: ").append(age)
+                .append("\nCidade: ").append(city)
+                .append("\nPais: ").append(country)
+                .append("\nConceitos:\n");
+        if (concepts.isEmpty()) {
+            sb.append("(nenhum)\n");
+        }else {
+            for (Concept c : concepts.values()) {
+                sb.append(" - ").append(c).append("\n");
+            }
+        }
+        
+        return sb.toString();
     }
 }
