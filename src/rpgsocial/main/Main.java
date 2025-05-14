@@ -15,7 +15,7 @@ public class Main {
     
     /**
     * Método principal da aplicação. Apresenta um menu interativo no console
-    * e executa ações com vase na escolha do usuário.
+    * e executa ações com base na escolha do usuário.
     */
     public static void main(String[] args) {
         
@@ -26,9 +26,12 @@ public class Main {
         do {
             System.out.println("\n--- Menu ---");
             System.out.println("1. Registrar"); // Registro de Usuário
-            System.out.println("4. Ver usuarios"); // feito para conferir o sistema de registros.
+            System.out.println("2. Login"); // Login do Usuário
+            System.out.println("3. Logout"); // Logout do Usuário
+            System.out.println("4. Ver usuarios registrados"); // feito para conferir o sistema de registros.
+            System.out.println("5. Ver usuario logado"); // feito para conferir o sistema de login.
             System.out.println("0. Sair");
-            System.out.println("Escolha: ");
+            System.out.println("Escolha uma opcao: ");
             option = scanner.nextInt();
             scanner.nextLine(); // Quebra de linha pendente
             
@@ -47,12 +50,38 @@ public class Main {
                         System.out.println("Nome de usuario ja existe.");
                     }
                 }
+                
+                case 2 -> {
+                    
+                    System.out.print("Entre o usuario: ");
+                    String username = scanner.nextLine();
+                    
+                    System.out.print("Entre a senha: ");
+                    String password = scanner.nextLine();
+                    
+                    if (app.loginUser(username, password)) {
+                        System.out.println("Usuario conectado com sucesso!");
+                    } else {
+                        System.out.println("Senha incorreta ou existe um usuario conectado.");
+                    }
+                }
+                
+                case 3 -> {
+                    
+                    System.out.println("Desconectando usuario...");
+                    app.logoutUser();
+                    System.out.println("Usuario desconectado...");
+                }
                     
                 case 4 -> {
-                    System.out.println("Usuarios registrados:");
+                    System.out.println("Nomes dos Usuarios registrados:");
                     for (User u : app.getAllUsers()) {
                         System.out.println("- " + u.getUsername());
                     }
+                }
+                case 5 -> {
+                    System.out.println("Nome do Usuario logado:");
+                        System.out.println("- " + app.getLoggedUser().getUsername());
                 }
                     
                 case 0 -> System.out.println("Saindo...");

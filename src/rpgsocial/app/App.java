@@ -22,12 +22,17 @@ public class App {
     /** HashMap de usuários, indexados pelo nome. */
     private Map<String, User> users = new HashMap<>();
     
+    /** HashMap de usuários, indexados pelo nome. */
+    private User userLogged = null;
+    
     /**
      * Construtor da aplicação. Carrega os usuários a partir do arquivo {@code users.dat}, se existir.
      */
     public App() {
         loadUsers();
     }
+    
+    // ------------- Register -------------
     
     /**
      * Registra um novo usuário no sistema.
@@ -48,6 +53,46 @@ public class App {
         return true;
     }
     
+    // ------------- Login -------------
+    
+    /**
+     * Conecta um usuário no sistema.
+     * 
+     * @param username o nome de usuário tentando conectar
+     * @param password a senha do usuário
+     * @return {@code true} se os dados informados estão 
+     * corretos e a conexão foi bem-sucedido, ou 
+     * {@code false} se já existir um usuário conectado
+     * ou a senha estiver incorreta.
+     */
+    public boolean loginUser(String username, String password) {
+        User user = users.get(username);
+        
+        if ((user != null) && (user.checkPassword(password))) {
+            userLogged = user;
+            return true;
+        }
+
+        return false;
+    }
+    
+    /**
+     * Desconecta o usuário conectado no sistema.
+     * 
+     */
+    public void logoutUser() {
+        userLogged = null;
+    }
+    
+    /**
+     * Retorna o usuário conectado no sistema.
+     * 
+     * @return o usuário conectado
+     */
+    public User getLoggedUser() {
+        return userLogged;
+    }
+    
     /**
      * Retorna todos os usuários registrados no sistema.
      * 
@@ -55,6 +100,16 @@ public class App {
      */
     public Collection<User> getAllUsers() {
         return users.values();
+    }
+    
+    // ------------- Persistence -------------
+    
+    /**
+     * Salva todos os dados persistentes do sistema ao fechar.
+     * Atualmente, apenas os usuários são salvos.
+     */
+    public void saveAll() {
+        saveUsers();
     }
     
     /**
@@ -68,14 +123,6 @@ public class App {
         } catch (IOException e) {
             System.err.println("Erro ao carregar usuários: " + e.getMessage());
         }
-    }
-    
-    /**
-     * Salva todos os dados persistentes do sistema ao fechar.
-     * Atualmente, apenas os usuários são salvos.
-     */
-    public void saveAll() {
-        saveUsers();
     }
     
     /**
