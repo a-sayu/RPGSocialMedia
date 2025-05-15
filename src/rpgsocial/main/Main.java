@@ -14,7 +14,7 @@ import rpgsocial.model.User;
  * Essa classe fornece uma interface de console simples para registro,
  * login, criação de conceitos e visualização de usuários.
  * 
- * @author Sayu
+ * @author ABIGAIL S. NAKASHIMA
  */
 public class Main {
     

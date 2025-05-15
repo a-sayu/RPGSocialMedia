@@ -104,7 +104,7 @@ public class User implements Serializable {
                 .append("\nCidade: ").append(city)
                 .append("\nPais: ").append(country)
                 .append("\nConceitos:\n");
-        if (concepts.isEmpty()) {
+        if (concepts == null || concepts.isEmpty()) {
             sb.append("(nenhum)\n");
         }else {
             for (Concept c : concepts.values()) {
