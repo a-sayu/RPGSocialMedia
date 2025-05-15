@@ -1,6 +1,6 @@
 # RPGSocialMedia
 
-Projeto para a disciplina de Engenharia de Software I
+Projeto para a disciplina de Engenharia de Software I por Abigail Sayury Nakashima e Miguel de Campos Rodrigues Moret
 
 ## Current Development
 
