@@ -31,5 +31,5 @@ Visualizar diagramas:
 1. Abrir Astah
 2. Abrir projeto RSSocialMediaDiagram.astah
 
-Documento de Requisitos: 
-Casos de Uso Alto Nível e Extendido:
+Documento de Requisitos: 2025_ES_PROJ1_1_Documento_de_Requisitos.pdf
+Casos de Uso Alto Nível e Extendido: 2025_ES_PROJ1_1_2_Casos_de_Uso.pdf
