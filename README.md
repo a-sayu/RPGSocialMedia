@@ -1,31 +1,33 @@
-# RPGSocialMedia
+# RPG Social Media
 
-Projeto para a disciplina de Engenharia de Software I por Abigail Sayury Nakashima e Miguel de Campos Rodrigues Moret
+Projeto para a disciplina de Engenharia de Software I por Abigail Sayury Nakashima e Miguel de Campos Rodrigues Moret. Uma rede social que processa conceitos de personagens de RPG e recomenda os conceitos para 
 
 ## Current Development
 
+- [X] Terminal Interface
 - [X] User
 - [X] Concept
+- [X] Register
+- [X] Login
 - [ ] Matching Algorithm
-- [X] Terminal Interface
 - [ ] Friendship
-- [ ] Connection
+- [ ] Groups
 - [ ] Chat
+- [ ] Connection
 
 ## Branch Guide
 
-- Main: Código pronto para produção que pode ser lançado.
-- Develop: Código de pré-produção e funcionalidades recentemente desenvolvidas que estão a ser testadas.
-- Feature: Utilizado para adicionar novas funcionalidades ao código.
-- Release: Usado na preparação de um novo lançamento de produto, retoques finais e pequenos erros específicos do novo código de lançamento.
-- Hotfix: Utilizado para abordar rapidamente as alterações necessárias no seu ramo principal.
+- Main: Linha principal de desenvolvimento.
+- Docs/: Focado exclusivamente em atualização da documentação do projeto.
+- Feature/: Usada para o desenvolvimento de novas funcionalidades 
+- Hotfix/: Usada para correções rápidas
 
 ## Usage Guide
 
 1. Abrir NetBeans
 2. Abrir RPGSocialMedia como projeto
 3. Executar arquivo main dentro de rpgsocial.main
-   3.1 Seta verde.
+- 3.1 Seta verde.
 
 Visualizar diagramas:
 1. Abrir Astah
