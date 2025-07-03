@@ -10,14 +10,14 @@ import java.util.ArrayList;
  *
  * @author MIGUEL CAMPOS
  */
-public class Concept {
+public class OldConcept {
     private String name;
     private String system;
     private String schedule;
     private String description;
     private ArrayList<String> tags;
     
-    public Concept(String name, String system, String schedule, String description, ArrayList<String> tags) {
+    public OldConcept(String name, String system, String schedule, String description, ArrayList<String> tags) {
         this.name = name;
         this.system = system;
         this.schedule = schedule;

@@ -13,7 +13,7 @@ import java.util.*;
  * Implementa {@link Serializable} para possibilitar persistência de objetos.
  * @author MIGUEL CAMPOS
  */
-public class User implements Serializable {
+public class OldUser implements Serializable {
     
     private static final long serialVersionUID = 1L;
     private String username;
@@ -23,7 +23,7 @@ public class User implements Serializable {
     private String city;
     private String country;
     
-    private Map<String, Concept> concepts = new HashMap<>();
+    private Map<String, OldConcept> concepts = new HashMap<>();
     
     /**
      * Cria um novo usuário com o nome de usuário e senha fornecidos.
@@ -45,7 +45,7 @@ public class User implements Serializable {
      * @param city a cidade do novo usuário
      * @param country o país do novo usuário
      */
-    public User(String username, String email, String password, int age, String city, String country) {
+    public OldUser(String username, String email, String password, int age, String city, String country) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -76,7 +76,7 @@ public class User implements Serializable {
      */
     public boolean checkPassword(String input) { return password.equals(input); }
     
-    public boolean addConcept(Concept newConcept) {
+    public boolean addConcept(OldConcept newConcept) {
         
         if (concepts.containsKey(newConcept.getName())) {
             return false;
@@ -86,14 +86,14 @@ public class User implements Serializable {
         return true;
     }
     
-    public Collection<Concept> getConcepts() {
+    public Collection<OldConcept> getConcepts() {
         return concepts.values();
     }
   
     /**
      * Retorna uma representação textual do usuário.
      * 
-     * @return uma string no formato "User: [username]"
+     * @return uma string no formato "OldUser: [username]"
      */
     @Override
     public String toString() {
@@ -107,7 +107,7 @@ public class User implements Serializable {
         if (concepts == null || concepts.isEmpty()) {
             sb.append("(nenhum)\n");
         }else {
-            for (Concept c : concepts.values()) {
+            for (OldConcept c : concepts.values()) {
                 sb.append(" - ").append(c).append("\n");
             }
         }
