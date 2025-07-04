@@ -8,21 +8,22 @@ package rpgsocial.model;
 public class Tag {
 
     private String nome;
-    private String category;
+    private String categoria;
 
     public Tag() {
 
     }
 
-    public Tag(String nome, String classe) {
+    public Tag(String nome, String categoria) {
         this.nome = nome;
+        this.categoria = categoria;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public String getCategory() {
-        return category;
+    public String getCategoria() {
+        return categoria;
     }
 }

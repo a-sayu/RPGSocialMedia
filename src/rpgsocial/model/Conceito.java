@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Conceito {
 
-    private Usuario criador;
+    private String criador;
     private String nome;
     private String sistema;
     private ArrayList<LocalDate> horarios;
@@ -23,7 +23,7 @@ public class Conceito {
 
     }
 
-    public Conceito(Usuario criador, String nome, String sistema, ArrayList<LocalDate> horarios, ArrayList<Tag> tags, LocalDateTime data_criacao, LocalDateTime data_modificacao) {
+    public Conceito(String criador, String nome, String sistema, ArrayList<LocalDate> horarios, ArrayList<Tag> tags, LocalDateTime data_criacao, LocalDateTime data_modificacao) {
         this.criador = criador;
         this.nome = nome;
         this.sistema = sistema;
@@ -33,7 +33,7 @@ public class Conceito {
         this.data_modificacao = data_modificacao;
     }
 
-    public Usuario getCriador() {
+    public String getCriador() {
         return criador;
     }
 

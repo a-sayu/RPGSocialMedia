@@ -68,16 +68,18 @@ public class MainTeste {
         ));
 
         ArrayList<Tag> tagsA = new ArrayList<>(List.of(
+                new Tag("personagem", "tipo"),
                 new Tag("guerreiro", "classe"),
-                new Tag("homem", "gênero"),
-                new Tag("humano", "raça")
+                new Tag("humano", "raça"),
+                new Tag("homem", "atributo")
         ));
 
         ArrayList<Tag> tagsB = new ArrayList<>(List.of(
+                new Tag("personagem", "tipo"),
                 new Tag("mago", "classe"),
+                new Tag("elfo", "raça"),
                 new Tag("sombrio", "atributo"),
-                new Tag("belo", "atributo"),
-                new Tag("elfo", "raça")
+                new Tag("belo", "atributo")
         ));
 
         ArrayList<Tag> tagsC = new ArrayList<>(List.of(
@@ -86,18 +88,23 @@ public class MainTeste {
                 new Tag("belo", "atributo"),
                 new Tag("campanha", "tipo")
         ));
-        
+
         LocalDateTime criacaoA = LocalDateTime.now();
         LocalDateTime criacaoB = LocalDateTime.now();
         LocalDateTime criacaoC = LocalDateTime.now();
         Conceito conceitoA = new Conceito(registroA.get(0), "ConceitoA", "DnD", horariosA, tagsA, criacaoA, criacaoA);
         Conceito conceitoB = new Conceito(registroA.get(0), "ConceitoB", "DnD", horariosB, tagsB, criacaoB, criacaoB);
-        Conceito campanha = new Conceito(controlUsuario.getUsuario(registroA.get(0)), "ConceitoC", "DnD", horariosC, tagsC, criacaoC, criacaoC);
-
+        Conceito campanhaA = new Conceito(registroA.get(0), "ConceitoC", "DnD", horariosC, tagsC, criacaoC, criacaoC);
+        Conceito campanhaB = new Conceito(registroA.get(0), "ConceitoD", "DnD", horariosC, tagsC, criacaoC, criacaoC);
         ControladorCombinacao controlCombinacao = new ControladorCombinacao();
         boolean compativel = controlCombinacao.combinarConceitos(conceitoA, conceitoB);
         if (compativel) {
             System.out.println("conceitoA e conceitoB foram combinados");
+        }
+        
+        boolean compativel2 = controlCombinacao.combinarConceitos(campanhaA, campanhaB);
+        if (compativel2) {
+            System.out.println("campanhaA e campanhaB foram combinados");
         }
     }
 }

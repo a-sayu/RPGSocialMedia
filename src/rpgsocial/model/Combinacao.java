@@ -9,8 +9,8 @@ public class Combinacao {
 
     private Conceito conceitoA;
     private Conceito conceitoB;
-    private Usuario criadorA;
-    private Usuario criadorB;
+    private String criadorA;
+    private String criadorB;
     private int porcentagem;
 
     public Combinacao(Conceito conceitoA, Conceito conceitoB, int porcentagem) {
@@ -29,11 +29,11 @@ public class Combinacao {
         return conceitoB;
     }
 
-    public Usuario getCriadorA() {
+    public String getCriadorA() {
         return criadorA;
     }
 
-    public Usuario getCriadorB() {
+    public String getCriadorB() {
         return criadorB;
     }
 

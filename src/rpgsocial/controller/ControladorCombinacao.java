@@ -53,32 +53,52 @@ public class ControladorCombinacao {
 
         for (LocalDate horarioA : conceitoA.getHorarios()) {
             for (LocalDate horarioB : conceitoB.getHorarios()) {
-                if (horarioA == horarioB) {
+                if (horarioA.equals(horarioB)) {
                     iguais++;
                 }
             }
         }
 
-        int valor = (int) ((iguais / total) * 33);
+        System.out.println("Horarios " + iguais);
+
+        int valor = (int) (((double) iguais / (double) total) * 33);
+        System.out.println("Valor " + valor);
         compatibilidade = compatibilidade + valor;
         System.out.println("Compatibilidade Apos Horarios: " + compatibilidade);
 
-        total = conceitoB.getTags().size();
+        total = 0;
         iguais = 0;
+        boolean flagCampanha = false;
 
-        if (conceitoA.getTags().size() > conceitoB.getTags().size()) {
-            total = conceitoA.getTags().size();
-        }
+        System.out.println("Total " + total);
 
         for (Tag tagA : conceitoA.getTags()) {
             for (Tag tagB : conceitoB.getTags()) {
-                if (tagA.getCategory().equalsIgnoreCase(tagB.getCategory()) && tagA != tagB) {
-                    iguais++;
+                if (tagA.getNome().equalsIgnoreCase(tagB.getNome()) && tagB.getNome().equalsIgnoreCase("campanha")) {
+                    flagCampanha = true;
+                    System.out.println("Flag " + flagCampanha);
                 }
+                if (tagA.getCategoria().equalsIgnoreCase(tagB.getCategoria())) {
+                    total++;
+                    System.out.println("Tag A " + tagA.getNome());
+                    System.out.println("Tag B " + tagB.getNome());
+                    if (!tagA.getNome().equals(tagB.getNome())) {
+                        iguais++;
+                        System.out.println("Compativeis " + iguais);
+                    }
+                }
+
+            }
+            if (flagCampanha) {
+                iguais = 0;
+                compatibilidade = 0;
+                break;
             }
         }
+        System.out.println("Tags " + iguais);
 
-        valor = (int) ((iguais / total) * 33);
+        valor = (int) (((double) iguais / (double) total) * 33);
+        System.out.println("Valor " + valor);
         compatibilidade = compatibilidade + valor;
         System.out.println("Compatibilidade Apos Tags: " + compatibilidade);
         return compatibilidade;
