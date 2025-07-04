@@ -3,6 +3,7 @@ package rpgsocial.app;
 import java.util.ArrayList;
 import rpgsocial.controller.*;
 import rpgsocial.iu.TextUI;
+import rpgsocial.model.TipoSessao;
 import rpgsocial.model.Usuario;
 
 /**
@@ -16,7 +17,7 @@ public class App {
     private final ControladorConceito controlConceito;
     private final ControladorCombinacao controlCombinacao;
     private final TextUI textUI;
-    private final String sessao;
+    private TipoSessao sessao;
     private Usuario usuarioConectado;
 
     public App() {
@@ -24,17 +25,14 @@ public class App {
         controlConceito = new ControladorConceito();
         controlCombinacao = new ControladorCombinacao();
         textUI = new TextUI();
-        sessao = "";
-        processarOpcao(sessao, textUI.exibirInterface(sessao));
+        sessao = TipoSessao.DESCONECTADO;
+        usuarioConectado = null;
     }
-    
-    public  void executar() {
-        int opcao;
+
+    public void executar() {
         do {
-            opcao = textUI.exibirInterface(sessao);
-        } while(opcao != 0);
-        
-        
+            processarOpcao(sessao, textUI.exibirInterface(sessao));
+        } while (sessao != TipoSessao.DESCONECTADO);
     }
 
     private void processarDesconectado(int opcao) {
@@ -45,7 +43,7 @@ public class App {
             }
             case 2 -> {
                 ArrayList<String> login = textUI.formulario("login");
-                usuarioConectado = controlUsuario.loginUsuario(login);
+                conectarUsuario(controlUsuario.loginUsuario(login));
             }
             case 0 ->
                 System.out.println("Saindo...");
@@ -60,6 +58,7 @@ public class App {
 
             case 1 -> {
                 controlUsuario.desconectar(usuarioConectado);
+                desconectarUsuario();
             }
             case 2 -> {
                 controlUsuario.exibirConceitosDoUsuario(usuarioConectado);
@@ -86,6 +85,7 @@ public class App {
 
             case 1 -> {
                 controlUsuario.desconectar(usuarioConectado);
+                desconectarUsuario();
             }
             case 2 -> {
                 controlUsuario.exibirUsuarios();
@@ -110,16 +110,32 @@ public class App {
 
             default ->
                 System.out.println("Opção inválida.");
-
         }
     }
 
-    private void processarOpcao(String sessao, int exibirInterface) {
+    private void processarOpcao(TipoSessao sessao, int exibirInterface) {
         switch (sessao) {
-            case "admin" -> processarDebug(exibirInterface);
-            case "comum" -> processarConectado(exibirInterface);
-            default -> processarDesconectado(exibirInterface);
+            case ADMIN ->
+                processarDebug(exibirInterface);
+            case COMUM ->
+                processarConectado(exibirInterface);
+            default ->
+                processarDesconectado(exibirInterface);
         }
+    }
+
+    private void conectarUsuario(Usuario usuario) {
+        if (usuario.isEhAdmin()) {
+            sessao = TipoSessao.ADMIN;
+        } else {
+            sessao = TipoSessao.COMUM;
+        }
+        usuarioConectado = usuario;
+    }
+
+    private void desconectarUsuario() {
+        sessao = TipoSessao.DESCONECTADO;
+        usuarioConectado = null;
     }
 
 }

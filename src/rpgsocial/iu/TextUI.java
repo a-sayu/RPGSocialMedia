@@ -1,7 +1,8 @@
 package rpgsocial.iu;
 
 import java.util.ArrayList;
-import rpgsocial.controller.ControladorUsuario;
+import rpgsocial.model.TipoFormulario;
+import rpgsocial.model.TipoSessao;
 
 /**
  *
@@ -10,31 +11,31 @@ import rpgsocial.controller.ControladorUsuario;
  */
 public class TextUI {
 
-    private TelaPrincipal menu;
-    private ControladorUsuario controlUsuario;
+    private final TelaPrincipal menu;
 
     public TextUI() {
         menu = new TelaPrincipal();
-        controlUsuario = new ControladorUsuario();
     }
 
-    public int exibirInterface(String tipoSessao) {
-        if (tipoSessao.equals("comum")) {
-            return menu.exibirMenuDebug();
-        } else if (tipoSessao.equals("admin")) {
-            return menu.exibirMenuConectado();
-        } else {
-            return menu.exibirMenuDesconectado();
-        }
+    public int exibirInterface(TipoSessao tipoSessao) {
+        return switch (tipoSessao) {
+            case COMUM ->
+                menu.exibirMenuDebug();
+            case ADMIN ->
+                menu.exibirMenuConectado();
+            default ->
+                menu.exibirMenuDesconectado();
+        };
     }
 
-    public ArrayList<String> formulario(String tipo) {
-        if (tipo.equals("registro")) {
-            return menu.formularioRegistro();
-        } else if (tipo.equals("login")) {
-            return menu.formularioLogin();
-        }
-        return null;
-
+    public ArrayList<String> formulario(TipoFormulario tipo) {
+        return switch (tipo) {
+            case REGISTRO ->
+                menu.formularioRegistro();
+            case LOGIN ->
+                menu.formularioLogin();
+            default ->
+                null;
+        };
     }
 }

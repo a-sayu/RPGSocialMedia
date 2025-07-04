@@ -12,8 +12,8 @@ import rpgsocial.persistence.CatalogoUsuario;
  */
 public class ControladorUsuario {
 
-    private CatalogoUsuario catalogoUsuario;
-    private FabricaUsuario fabricaUsuario;
+    private final CatalogoUsuario catalogoUsuario;
+    private final FabricaUsuario fabricaUsuario;
 
     public ControladorUsuario() {
         catalogoUsuario = new CatalogoUsuario();
@@ -31,13 +31,8 @@ public class ControladorUsuario {
 
     public Usuario loginUsuario(ArrayList<String> login) {
         Usuario usuarioEncontrado = catalogoUsuario.existeUsuario(login);
-        Usuario usuarioConectado;
-        if (!usuarioEncontrado.equals(null)) {
-            usuarioConectado = catalogoUsuario.verificarSenha(usuarioEncontrado, login);
-            if (usuarioConectado.equals(null)) {
-                return null;
-            }
-            return usuarioConectado;
+        if (usuarioEncontrado.verificarSenha(login.get(1))) {
+            return usuarioEncontrado;
         }
         return null;
     }

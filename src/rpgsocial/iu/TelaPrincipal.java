@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class TelaPrincipal {
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public TelaPrincipal() {
         scanner = new Scanner(System.in);
@@ -27,7 +27,7 @@ public class TelaPrincipal {
 
         opcao = scanner.nextInt();
         scanner.nextLine();
-        
+
         return opcao;
     }
 
@@ -98,7 +98,7 @@ public class TelaPrincipal {
 
         System.out.println("Entre a senha: ");
         String senha = scanner.nextLine();
-        
+
         ArrayList<String> usuario = new ArrayList<>();
         usuario.addAll(List.of(email, senha));
         return usuario;
