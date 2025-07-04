@@ -1,6 +1,7 @@
 package rpgsocial.model;
 
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,7 @@ public class Conceito {
     private Usuario criador;
     private String nome;
     private String sistema;
-    private ArrayList<LocalDateTime> horarios;
+    private ArrayList<LocalDate> horarios;
     private ArrayList<Tag> tags;
     private LocalDateTime data_criacao;
     private LocalDateTime data_modificacao;
@@ -22,7 +23,7 @@ public class Conceito {
 
     }
 
-    public Conceito(Usuario criador, String nome, String sistema, ArrayList<LocalDateTime> horarios, ArrayList<Tag> tags, LocalDateTime data_criacao, LocalDateTime data_modificacao) {
+    public Conceito(Usuario criador, String nome, String sistema, ArrayList<LocalDate> horarios, ArrayList<Tag> tags, LocalDateTime data_criacao, LocalDateTime data_modificacao) {
         this.criador = criador;
         this.nome = nome;
         this.sistema = sistema;
@@ -44,7 +45,7 @@ public class Conceito {
         return sistema;
     }
 
-    public ArrayList<LocalDateTime> getHorarios() {
+    public ArrayList<LocalDate> getHorarios() {
         return horarios;
     }
 

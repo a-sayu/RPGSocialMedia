@@ -1,8 +1,9 @@
-
 package rpgsocial.controller;
 
 import java.util.ArrayList;
+import rpgsocial.fabrica.FabricaUsuario;
 import rpgsocial.model.Usuario;
+import rpgsocial.persistence.CatalogoUsuario;
 
 /**
  *
@@ -11,28 +12,12 @@ import rpgsocial.model.Usuario;
  */
 public class ControladorUsuario {
 
-    public boolean usuarioConectado(int session) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    private CatalogoUsuario catalogoUsuario;
+    private FabricaUsuario fabricaUsuario;
 
-    public boolean usuarioAdmin(int session) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void exibirConceitosDoUsuario(int session) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void exibirAmizadesDoUsuario(int session) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void exibirGruposDoUsuario(int session) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void exibirUsuario(int session) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ControladorUsuario() {
+        catalogoUsuario = new CatalogoUsuario();
+        fabricaUsuario = new FabricaUsuario();
     }
 
     public void exibirUsuarios() {
@@ -40,16 +25,41 @@ public class ControladorUsuario {
     }
 
     public void registrarUsuario(ArrayList<String> registro) {
-        Usuario novoUsuario = new Usuario(registro);
+        Usuario novoUsuario = fabricaUsuario.registrarUsuario(registro);
+        catalogoUsuario.adicionarUsuario(novoUsuario);
     }
-    
-    public void desconectar(int session) {
+
+    public Usuario loginUsuario(ArrayList<String> login) {
+        Usuario usuarioEncontrado = catalogoUsuario.existeUsuario(login);
+        Usuario usuarioConectado;
+        if (!usuarioEncontrado.equals(null)) {
+            usuarioConectado = catalogoUsuario.verificarSenha(usuarioEncontrado, login);
+            if (usuarioConectado.equals(null)) {
+                return null;
+            }
+            return usuarioConectado;
+        }
+        return null;
+    }
+
+    public void desconectar(Usuario session) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void loginUsuario(String email, String senha) {
+    public void exibirConceitosDoUsuario(Usuario usuarioConectado) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public void exibirGruposDoUsuario(Usuario usuarioConectado) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void exibirUsuario(Usuario usuarioConectado) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void exibirAmizadesDoUsuario(Usuario usuarioConectado) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }

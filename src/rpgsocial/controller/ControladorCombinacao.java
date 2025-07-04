@@ -10,6 +10,7 @@ import rpgsocial.persistence.CatalogoCombinacao;
  *
  */
 public class ControladorCombinacao {
+
     private CatalogoCombinacao catalogoCombinacao;
 
     public ControladorCombinacao() {
@@ -17,8 +18,9 @@ public class ControladorCombinacao {
     }
 
     public boolean combinarConceitos(Conceito conceitoA, Conceito conceitoB) {
-        if (verificarCompatibilidade(conceitoA, conceitoB)) {
-            Combinacao novaCombinacao = criarCombinacao(conceitoA, conceitoB);
+        int compatibilidade = verificarCompatibilidade(conceitoA, conceitoB);
+        if (compatibilidade > 50) {
+            Combinacao novaCombinacao = criarCombinacao(conceitoA, conceitoB, compatibilidade);
             if (catalogoCombinacao.adicionar(novaCombinacao)) {
                 return true;
             }
@@ -26,13 +28,19 @@ public class ControladorCombinacao {
         return false;
     }
 
-    public Combinacao criarCombinacao(Conceito conceitoA, Conceito conceitoB) {
-        Combinacao novaCombinacao = new Combinacao(conceitoA, conceitoB);
+    public Combinacao criarCombinacao(Conceito conceitoA, Conceito conceitoB, int porcentagem) {
+        Combinacao novaCombinacao = new Combinacao(conceitoA, conceitoB, porcentagem);
         return novaCombinacao;
     }
 
-    public boolean verificarCompatibilidade(Conceito conceitaA, Conceito conceitoB) {
-        return true;
+    public int verificarCompatibilidade(Conceito conceitoA, Conceito conceitoB) {
+        int compatibilidade = 0;
+        if (conceitoA.getSistema().equalsIgnoreCase(conceitoB.getSistema())) {
+            compatibilidade = compatibilidade + 33;
+        }
+        for (int i = 0, j = 0; i < conceitoA.getHorarios().size() && j < conceitoB.getHorarios().size(); i++, j++) {
+            
+        }
     }
 
     public void exibirCombinacoes() {

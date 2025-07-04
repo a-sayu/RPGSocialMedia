@@ -24,7 +24,7 @@ public class App {
         controlConceito = new ControladorConceito();
         controlCombinacao = new ControladorCombinacao();
         textUI = new TextUI();
-        sessao = "admin";
+        sessao = "";
         processarOpcao(sessao, textUI.exibirInterface(sessao));
     }
 
@@ -35,7 +35,8 @@ public class App {
                 controlUsuario.registrarUsuario(registro);
             }
             case 2 -> {
-                textUI.formulario("login");
+                ArrayList<String> login = textUI.formulario("login");
+                usuarioConectado = controlUsuario.loginUsuario(login);
             }
             case 0 ->
                 System.out.println("Saindo...");
@@ -55,7 +56,7 @@ public class App {
                 controlUsuario.exibirConceitosDoUsuario(usuarioConectado);
             }
             case 3 -> {
-                //controlUsuario.exibirAmizadesDoUsuario(usuarioConectado);
+                controlUsuario.exibirAmizadesDoUsuario(usuarioConectado);
             }
             case 4 -> {
                 controlUsuario.exibirGruposDoUsuario(usuarioConectado);

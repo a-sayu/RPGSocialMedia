@@ -11,12 +11,14 @@ public class Combinacao {
     private Conceito conceitoB;
     private Usuario criadorA;
     private Usuario criadorB;
+    private int porcentagem;
 
-    public Combinacao(Conceito conceitoA, Conceito conceitoB) {
+    public Combinacao(Conceito conceitoA, Conceito conceitoB, int porcentagem) {
         this.conceitoA = conceitoA;
         this.conceitoB = conceitoB;
         this.criadorA = conceitoA.getCriador();
         this.criadorB = conceitoB.getCriador();
+        this.porcentagem = porcentagem;
     }
 
     public Conceito getConceitoA() {
@@ -33,6 +35,10 @@ public class Combinacao {
 
     public Usuario getCriadorB() {
         return criadorB;
+    }
+
+    public int getPorcentagem() {
+        return porcentagem;
     }
 
 }

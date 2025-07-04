@@ -26,6 +26,8 @@ public class TelaPrincipal {
         System.out.println("Escolha uma opcao: ");
 
         opcao = scanner.nextInt();
+        scanner.nextLine();
+        
         return opcao;
     }
 
@@ -41,6 +43,7 @@ public class TelaPrincipal {
         System.out.println("Escolha uma opcao: ");
 
         opcao = scanner.nextInt();
+        scanner.nextLine();
         return opcao;
     }
 
@@ -57,29 +60,32 @@ public class TelaPrincipal {
         System.out.println("Escolha uma opcao: ");
 
         opcao = scanner.nextInt();
+        scanner.nextLine();
         return opcao;
     }
 
     public ArrayList<String> formularioRegistro() {
-        System.out.print("Entre seu nome de usuario: ");
+        scanner.nextLine();
+        System.out.println("Entre seu nome de usuario: ");
         String nomeusuario = scanner.nextLine();
 
-        System.out.print("Entre seu email: ");
+        System.out.println("Entre seu email: ");
         String email = scanner.nextLine();
 
-        System.out.print("Entre sua senha: ");
+        System.out.println("Entre sua senha: ");
         String senha = scanner.nextLine();
 
-        System.out.print("Entre sua idade: ");
+        System.out.println("Entre sua idade: ");
         String idade = scanner.nextLine();
+        scanner.nextLine();
 
-        System.out.print("Entre sua cidade: ");
+        System.out.println("Entre sua cidade: ");
         String cidade = scanner.nextLine();
 
-        System.out.print("Entre seu pais: ");
+        System.out.println("Entre seu estado: ");
         String estado = scanner.nextLine();
 
-        System.out.print("Entre seu pais: ");
+        System.out.println("Entre seu pais: ");
         String pais = scanner.nextLine();
 
         ArrayList<String> novoUsuario = new ArrayList<>();
@@ -88,10 +94,11 @@ public class TelaPrincipal {
     }
 
     public ArrayList<String> formularioLogin() {
-        System.out.print("Entre o email: ");
+        scanner.nextLine();
+        System.out.println("Entre o email: ");
         String email = scanner.nextLine();
 
-        System.out.print("Entre a senha: ");
+        System.out.println("Entre a senha: ");
         String senha = scanner.nextLine();
         
         ArrayList<String> usuario = new ArrayList<>();
