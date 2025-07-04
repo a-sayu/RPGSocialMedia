@@ -1,5 +1,7 @@
 package rpgsocial.main;
 
+import rpgsocial.app.App;
+
 /**
  *
  * @author Abigail S. N. - @a-sayu
@@ -8,7 +10,7 @@ package rpgsocial.main;
  */
 public class Main {
     public static void main(String[] args) {
-        
+        App app = new App();
         
     }
 }

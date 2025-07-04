@@ -1,5 +1,6 @@
-
 package rpgsocial.controller;
+
+import rpgsocial.model.Conceito;
 
 /**
  *
@@ -8,8 +9,11 @@ package rpgsocial.controller;
  */
 public class ControladorConceito {
 
+    public ControladorConceito() {
+    }
+
     public void exibirConceitos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
     }
 
 }

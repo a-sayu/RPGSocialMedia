@@ -1,0 +1,63 @@
+package rpgsocial.model;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Abigail S. N. - @a-sayu
+ *
+ */
+public class Conceito {
+
+    private Usuario criador;
+    private String nome;
+    private String sistema;
+    private ArrayList<LocalDateTime> horarios;
+    private ArrayList<Tag> tags;
+    private LocalDateTime data_criacao;
+    private LocalDateTime data_modificacao;
+
+    public Conceito() {
+
+    }
+
+    public Conceito(Usuario criador, String nome, String sistema, ArrayList<LocalDateTime> horarios, ArrayList<Tag> tags, LocalDateTime data_criacao, LocalDateTime data_modificacao) {
+        this.criador = criador;
+        this.nome = nome;
+        this.sistema = sistema;
+        this.horarios = horarios;
+        this.tags = tags;
+        this.data_criacao = data_criacao;
+        this.data_modificacao = data_modificacao;
+    }
+
+    public Usuario getCriador() {
+        return criador;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getSistema() {
+        return sistema;
+    }
+
+    public ArrayList<LocalDateTime> getHorarios() {
+        return horarios;
+    }
+
+    public LocalDateTime getData_criacao() {
+        return data_criacao;
+    }
+
+    public LocalDateTime getData_modificacao() {
+        return data_modificacao;
+    }
+
+    public ArrayList<Tag> getTags() {
+        return tags;
+    }
+
+}

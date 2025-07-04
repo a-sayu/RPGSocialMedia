@@ -1,6 +1,9 @@
 
 package rpgsocial.controller;
 
+import java.util.ArrayList;
+import rpgsocial.model.Usuario;
+
 /**
  *
  * @author Abigail S. N. - @a-sayu
@@ -36,10 +39,10 @@ public class ControladorUsuario {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void registrarUsuario(String nomeusuario, String email, String senha, int idade, String cidade, String estado, String pais) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void registrarUsuario(ArrayList<String> registro) {
+        Usuario novoUsuario = new Usuario(registro);
     }
-
+    
     public void desconectar(int session) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -47,5 +50,6 @@ public class ControladorUsuario {
     public void loginUsuario(String email, String senha) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 
 }
