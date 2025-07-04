@@ -27,6 +27,15 @@ public class App {
         sessao = "";
         processarOpcao(sessao, textUI.exibirInterface(sessao));
     }
+    
+    public  void executar() {
+        int opcao;
+        do {
+            opcao = textUI.exibirInterface(sessao);
+        } while(opcao != 0);
+        
+        
+    }
 
     private void processarDesconectado(int opcao) {
         switch (opcao) {

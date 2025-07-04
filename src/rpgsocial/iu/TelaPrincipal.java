@@ -65,7 +65,6 @@ public class TelaPrincipal {
     }
 
     public ArrayList<String> formularioRegistro() {
-        scanner.nextLine();
         System.out.println("Entre seu nome de usuario: ");
         String nomeusuario = scanner.nextLine();
 
@@ -77,7 +76,6 @@ public class TelaPrincipal {
 
         System.out.println("Entre sua idade: ");
         String idade = scanner.nextLine();
-        scanner.nextLine();
 
         System.out.println("Entre sua cidade: ");
         String cidade = scanner.nextLine();

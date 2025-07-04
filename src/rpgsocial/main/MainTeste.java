@@ -90,8 +90,8 @@ public class MainTeste {
         LocalDateTime criacaoA = LocalDateTime.now();
         LocalDateTime criacaoB = LocalDateTime.now();
         LocalDateTime criacaoC = LocalDateTime.now();
-        Conceito conceitoA = new Conceito(controlUsuario.getUsuario(registroA.get(0)), "ConceitoA", "DnD", horariosA, tagsA, criacaoA, criacaoA);
-        Conceito conceitoB = new Conceito(controlUsuario.getUsuario(registroA.get(0)), "ConceitoB", "DnD", horariosB, tagsB, criacaoB, criacaoB);
+        Conceito conceitoA = new Conceito(registroA.get(0), "ConceitoA", "DnD", horariosA, tagsA, criacaoA, criacaoA);
+        Conceito conceitoB = new Conceito(registroA.get(0), "ConceitoB", "DnD", horariosB, tagsB, criacaoB, criacaoB);
         Conceito campanha = new Conceito(controlUsuario.getUsuario(registroA.get(0)), "ConceitoC", "DnD", horariosC, tagsC, criacaoC, criacaoC);
 
         ControladorCombinacao controlCombinacao = new ControladorCombinacao();
