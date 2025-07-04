@@ -1,5 +1,3 @@
-
-
 package rpgsocial.model;
 
 /**
@@ -8,13 +6,23 @@ package rpgsocial.model;
  *
  */
 public class Tag {
+
     private String nome;
-    
+    private String category;
+
     public Tag() {
-        
+
     }
 
-    public Tag(String guerreiro) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Tag(String nome, String classe) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCategory() {
+        return category;
     }
 }
