@@ -1,7 +1,5 @@
 package rpgsocial.controller;
 
-import static java.lang.Math.floor;
-import java.time.LocalDate;
 import rpgsocial.model.Combinacao;
 import rpgsocial.model.Conceito;
 import rpgsocial.model.Tag;
@@ -40,7 +38,7 @@ public class ControladorCombinacao {
     public int verificarCompatibilidade(Conceito conceitoA, Conceito conceitoB) {
         int compatibilidade = 0;
         if (conceitoA.getSistema().equalsIgnoreCase(conceitoB.getSistema())) {
-            compatibilidade = compatibilidade + 33;
+            compatibilidade = compatibilidade + 25;
         }
         System.out.println("Compatibilidade Apos Sistema: " + compatibilidade);
 
@@ -51,8 +49,8 @@ public class ControladorCombinacao {
             total = conceitoA.getHorarios().size();
         }
 
-        for (LocalDate horarioA : conceitoA.getHorarios()) {
-            for (LocalDate horarioB : conceitoB.getHorarios()) {
+        for (String horarioA : conceitoA.getHorarios()) {
+            for (String horarioB : conceitoB.getHorarios()) {
                 if (horarioA.equals(horarioB)) {
                     iguais++;
                 }
@@ -61,7 +59,7 @@ public class ControladorCombinacao {
 
         System.out.println("Horarios " + iguais);
 
-        int valor = (int) (((double) iguais / (double) total) * 33);
+        int valor = (int) (((double) iguais / (double) total) * 50);
         System.out.println("Valor " + valor);
         compatibilidade = compatibilidade + valor;
         System.out.println("Compatibilidade Apos Horarios: " + compatibilidade);
@@ -97,7 +95,7 @@ public class ControladorCombinacao {
         }
         System.out.println("Tags " + iguais);
 
-        valor = (int) (((double) iguais / (double) total) * 33);
+        valor = (int) (((double) iguais / (double) total) * 25);
         System.out.println("Valor " + valor);
         compatibilidade = compatibilidade + valor;
         System.out.println("Compatibilidade Apos Tags: " + compatibilidade);

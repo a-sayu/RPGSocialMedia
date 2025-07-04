@@ -12,12 +12,12 @@ import rpgsocial.persistence.CatalogoUsuario;
  */
 public class ControladorUsuario {
 
-    private final CatalogoUsuario catalogoUsuario;
-    private final FabricaUsuario fabricaUsuario;
+    private final CatalogoUsuario catalogo;
+    private final FabricaUsuario fabrica;
 
     public ControladorUsuario() {
-        catalogoUsuario = new CatalogoUsuario();
-        fabricaUsuario = new FabricaUsuario();
+        catalogo = new CatalogoUsuario();
+        fabrica = new FabricaUsuario();
     }
 
     public void exibirUsuarios() {
@@ -25,12 +25,12 @@ public class ControladorUsuario {
     }
 
     public void registrarUsuario(ArrayList<String> registro) {
-        Usuario novoUsuario = fabricaUsuario.registrarUsuario(registro);
-        catalogoUsuario.adicionarUsuario(novoUsuario);
+        Usuario novoUsuario = fabrica.registrarUsuario(registro);
+        catalogo.adicionarUsuario(novoUsuario);
     }
 
     public Usuario loginUsuario(ArrayList<String> login) {
-        Usuario usuarioEncontrado = catalogoUsuario.existeUsuario(login);
+        Usuario usuarioEncontrado = catalogo.existeUsuario(login);
         if (usuarioEncontrado.verificarSenha(login.get(1))) {
             return usuarioEncontrado;
         }

@@ -1,13 +1,10 @@
 package rpgsocial.main;
 
-import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
 import rpgsocial.controller.ControladorCombinacao;
+import rpgsocial.controller.ControladorConceito;
 import rpgsocial.controller.ControladorUsuario;
-import rpgsocial.model.Conceito;
-import rpgsocial.model.Tag;
-import rpgsocial.model.Usuario;
 
 /**
  *
@@ -47,62 +44,88 @@ public class MainTeste {
         controlUsuario.registrarUsuario(registroA);
         controlUsuario.registrarUsuario(registroB);
         controlUsuario.registrarUsuario(registroC);
-
-        ArrayList<LocalDate> horariosA = new ArrayList<>(List.of(
-                LocalDate.parse("2025-07-04"),
-                LocalDate.parse("2025-07-05"),
-                LocalDate.parse("2025-07-06"),
-                LocalDate.parse("2025-07-07")
+        
+        ControladorConceito controladorConceito = new ControladorConceito();
+        
+        ArrayList<String> conceitoA = new ArrayList<>(List.of(
+                registroA.get(0), 
+                "Jorge, o Indomável",
+                "DND",
+                "GRANDE",
+                "HORARIOS",
+                "SEGUNDA",
+                "TERCA",
+                "QUINTA",
+                "SEXTA",
+                "TAGS",
+                "personagem", "tipo",
+                "guerreiro", "classe",
+                "humano", "raça",
+                "homem", "atributo"
         ));
-
-        ArrayList<LocalDate> horariosB = new ArrayList<>(List.of(
-                LocalDate.parse("2025-07-05"),
-                LocalDate.parse("2025-07-07")
+        
+        ArrayList<String> conceitoB = new ArrayList<>(List.of(
+                registroA.get(0), 
+                "Jorge, o Indescritivel",
+                "D&D",
+                "GROSSO",
+                "HORARIOS",
+                "SEGUNDA",
+                "TERCA",
+                "QUINTA",
+                "SEXTA",
+                "TAGS",
+                "personagem", "tipo",
+                "guerreiro", "classe",
+                "humano", "raça",
+                "homem", "atributo"
         ));
-
-        ArrayList<LocalDate> horariosC = new ArrayList<>(List.of(
-                LocalDate.parse("2025-07-04"),
-                LocalDate.parse("2025-07-05"),
-                LocalDate.parse("2025-07-06"),
-                LocalDate.parse("2025-07-07")
+        
+        ArrayList<String> conceitoC = new ArrayList<>(List.of(
+                registroB.get(0), 
+                "José, o Grande",
+                "T20",
+                "PARECE ATÉ CIPÓ",
+                "HORARIOS",
+                "TERCA",
+                "QUINTA",
+                "TAGS",
+                "personagem", "tipo",
+                "mago", "classe",
+                "elfo", "raça",
+                "sombrio", "atributo",
+                "belo", "atributo"
+                
         ));
-
-        ArrayList<Tag> tagsA = new ArrayList<>(List.of(
-                new Tag("personagem", "tipo"),
-                new Tag("guerreiro", "classe"),
-                new Tag("humano", "raça"),
-                new Tag("homem", "atributo")
+        
+        ArrayList<String> conceitoD = new ArrayList<>(List.of(
+                registroC.get(0), 
+                "Jorsefina, a pequena",
+                "T20",
+                "SABE DE QUEM EU TO FALANDO",
+                "HORARIOS",
+                "QUARTA",
+                "TAGS",
+                "personagem", "tipo",
+                "maga", "classe",
+                "elfa", "raça",
+                "sombria", "atributo",
+                "bela", "atributo"
         ));
-
-        ArrayList<Tag> tagsB = new ArrayList<>(List.of(
-                new Tag("personagem", "tipo"),
-                new Tag("mago", "classe"),
-                new Tag("elfo", "raça"),
-                new Tag("sombrio", "atributo"),
-                new Tag("belo", "atributo")
-        ));
-
-        ArrayList<Tag> tagsC = new ArrayList<>(List.of(
-                new Tag("medieval", "estilo"),
-                new Tag("sombrio", "atributo"),
-                new Tag("belo", "atributo"),
-                new Tag("campanha", "tipo")
-        ));
-
-        LocalDateTime criacaoA = LocalDateTime.now();
-        LocalDateTime criacaoB = LocalDateTime.now();
-        LocalDateTime criacaoC = LocalDateTime.now();
-        Conceito conceitoA = new Conceito(registroA.get(0), "ConceitoA", "DnD", horariosA, tagsA, criacaoA, criacaoA);
-        Conceito conceitoB = new Conceito(registroA.get(0), "ConceitoB", "DnD", horariosB, tagsB, criacaoB, criacaoB);
-        Conceito campanhaA = new Conceito(registroA.get(0), "ConceitoC", "DnD", horariosC, tagsC, criacaoC, criacaoC);
-        Conceito campanhaB = new Conceito(registroA.get(0), "ConceitoD", "DnD", horariosC, tagsC, criacaoC, criacaoC);
+        
+        controladorConceito.registrar(conceitoA);
+        controladorConceito.registrar(conceitoB);
+        controladorConceito.registrar(conceitoC);
+        controladorConceito.registrar(conceitoD);
+        
+        
         ControladorCombinacao controlCombinacao = new ControladorCombinacao();
-        boolean compativel = controlCombinacao.combinarConceitos(conceitoA, conceitoB);
+        boolean compativel = controlCombinacao.combinarConceitos(controladorConceito.buscar("Jorge, o Indescritivel"), controladorConceito.buscar("Jorge, o Indomável"));
         if (compativel) {
             System.out.println("conceitoA e conceitoB foram combinados");
         }
         
-        boolean compativel2 = controlCombinacao.combinarConceitos(campanhaA, campanhaB);
+        boolean compativel2 = controlCombinacao.combinarConceitos(controladorConceito.buscar("José, o Grande"), controladorConceito.buscar("Jorsefina, a pequena"));
         if (compativel2) {
             System.out.println("campanhaA e campanhaB foram combinados");
         }

@@ -5,11 +5,33 @@
 
 package rpgsocial.persistence;
 
+import java.util.ArrayList;
+import rpgsocial.model.Conceito;
+
 /**
  *
  * @author Abigail S. N. - @a-sayu
  *
  */
 public class CatalogoConceito {
+    
+    private ArrayList<Conceito> conceitos;
+    
+    public CatalogoConceito() {
+       conceitos = new ArrayList<>();
+    }
+
+    public void adicionar(Conceito conceito) {
+        conceitos.add(conceito);
+    }
+    
+    public Conceito buscar(String nome) {
+        for (Conceito conceito : conceitos) {
+            if (conceito.getNome().equals(nome)) {
+                return conceito;
+            }
+        }
+        return null;
+    }
 
 }
