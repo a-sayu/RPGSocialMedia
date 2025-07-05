@@ -19,17 +19,13 @@ public class ControladorConceito {
         catalogo = new CatalogoConceito();
         fabrica = new FabricaConceito();
     }
-
-    public void exibirConceitos() {
-
-    }
-    //
-    public void registrar(ArrayList<String> dadosConceito) {
+    
+    public void registrarConceito(ArrayList<String> dadosConceito) {
         Conceito conceito = fabrica.fabricar(dadosConceito);
         catalogo.adicionar(conceito);
     }
     
-    public Conceito buscar(String nome) {
+    public Conceito buscarConceito(String nome) {
         return catalogo.buscar(nome);
     }
     

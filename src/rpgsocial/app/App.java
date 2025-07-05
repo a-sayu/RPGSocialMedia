@@ -92,10 +92,10 @@ public class App {
                 controlUsuario.exibirUsuarios();
             }
             case 3 -> {
-                controlConceito.exibirConceitos();
+                //controlConceito.exibirConceitos();
             }
             case 4 -> {
-                controlCombinacao.exibirCombinacoes();
+                //controlCombinacao.exibirCombinacoes();
             }
             case 5 -> {
                 //controlAmizade.exibirAmizades();

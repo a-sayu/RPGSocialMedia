@@ -3,6 +3,7 @@ package rpgsocial.persistence;
 
 import java.util.ArrayList;
 import rpgsocial.model.Combinacao;
+import rpgsocial.model.Conceito;
 
 /**
  *
@@ -18,7 +19,7 @@ public class CatalogoCombinacao {
     }
 
     public boolean adicionar(Combinacao combinacao) {
-        Combinacao invertida = new Combinacao(combinacao.getConceitoB(), combinacao.getConceitoA(), combinacao.getPorcentagem());
+        Combinacao invertida = new Combinacao(combinacao.getConceitoB(), combinacao.getConceitoA(), combinacao.getCompatibilidade(), combinacao.getDataCombinacao());
         if (!combinacoes.contains(invertida) && !combinacoes.contains(combinacao)) {
             combinacoes.add(combinacao);
             return true;
@@ -35,8 +36,15 @@ public class CatalogoCombinacao {
         return combinacoes;
     }
 
-    public void exibirCombinacoes() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<Combinacao> buscar(Conceito conceito) {
+        ArrayList<Combinacao> existeCombinacoes = new ArrayList<>();
+        for (Combinacao combinacao : combinacoes) {
+            if (combinacao.getConceitoA().equals(conceito) || combinacao.getConceitoB().equals(conceito)) {
+                existeCombinacoes.add(combinacao);
+            }
+        }
+        
+        return existeCombinacoes;
     }
     
     

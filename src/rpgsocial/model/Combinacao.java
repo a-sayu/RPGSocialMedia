@@ -1,5 +1,7 @@
 package rpgsocial.model;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author Abigail S. N. - @a-sayu
@@ -11,14 +13,24 @@ public class Combinacao {
     private Conceito conceitoB;
     private String criadorA;
     private String criadorB;
-    private int porcentagem;
+    private int compatibilidade;
+    private LocalDateTime dataCombinacao;
 
-    public Combinacao(Conceito conceitoA, Conceito conceitoB, int porcentagem) {
+    public Combinacao(Conceito conceitoA, Conceito conceitoB, int compatibilidade, LocalDateTime dataCombinacao) {
         this.conceitoA = conceitoA;
         this.conceitoB = conceitoB;
         this.criadorA = conceitoA.getCriador();
         this.criadorB = conceitoB.getCriador();
-        this.porcentagem = porcentagem;
+        this.compatibilidade = compatibilidade;
+        this.dataCombinacao = dataCombinacao;
+    }
+
+    public int getCompatibilidade() {
+        return compatibilidade;
+    }
+
+    public LocalDateTime getDataCombinacao() {
+        return dataCombinacao;
     }
 
     public Conceito getConceitoA() {
@@ -36,9 +48,4 @@ public class Combinacao {
     public String getCriadorB() {
         return criadorB;
     }
-
-    public int getPorcentagem() {
-        return porcentagem;
-    }
-
 }

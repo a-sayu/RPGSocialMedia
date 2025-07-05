@@ -21,8 +21,9 @@ public class CatalogoConceito {
        conceitos = new ArrayList<>();
     }
 
-    public void adicionar(Conceito conceito) {
+    public boolean adicionar(Conceito conceito) {
         conceitos.add(conceito);
+        return conceitos.contains(conceito);
     }
     
     public Conceito buscar(String nome) {
@@ -32,6 +33,11 @@ public class CatalogoConceito {
             }
         }
         return null;
+    }
+    
+    public boolean remover(Conceito conceito) {
+        conceitos.remove(conceito);
+        return !conceitos.contains(conceito);
     }
 
 }
