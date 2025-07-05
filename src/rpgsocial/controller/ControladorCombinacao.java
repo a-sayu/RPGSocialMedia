@@ -1,5 +1,6 @@
 package rpgsocial.controller;
 
+import rpgsocial.fabrica.FabricaCombinacao;
 import rpgsocial.model.Combinacao;
 import rpgsocial.model.Conceito;
 import rpgsocial.model.Tag;
@@ -12,29 +13,22 @@ import rpgsocial.persistence.CatalogoCombinacao;
  */
 public class ControladorCombinacao {
 
-    private CatalogoCombinacao catalogoCombinacao;
+    private CatalogoCombinacao catalogo;
+    private FabricaCombinacao fabrica;
 
     public ControladorCombinacao() {
-        catalogoCombinacao = new CatalogoCombinacao();
+        catalogo = new CatalogoCombinacao();
     }
 
     public boolean combinarConceitos(Conceito conceitoA, Conceito conceitoB) {
         int compatibilidade = verificarCompatibilidade(conceitoA, conceitoB);
-        Combinacao novaCombinacao = criarCombinacao(conceitoA, conceitoB, compatibilidade);
-        if (!(novaCombinacao == null)) {
-            return catalogoCombinacao.adicionar(novaCombinacao);
+        Combinacao combinacao = fabrica.fabricar(conceitoA, conceitoB, compatibilidade);
+        if (!(combinacao == null)) {
+            return catalogo.adicionar(combinacao);
         }
         return false;
     }
-
-    public Combinacao criarCombinacao(Conceito conceitoA, Conceito conceitoB, int porcentagem) {
-        if (porcentagem > 50) {
-            Combinacao novaCombinacao = new Combinacao(conceitoA, conceitoB, porcentagem);
-            return novaCombinacao;
-        }
-        return null;
-    }
-
+    
     public int verificarCompatibilidade(Conceito conceitoA, Conceito conceitoB) {
         int compatibilidade = 0;
         if (conceitoA.getSistema().equalsIgnoreCase(conceitoB.getSistema())) {
@@ -100,10 +94,6 @@ public class ControladorCombinacao {
         compatibilidade = compatibilidade + valor;
         System.out.println("Compatibilidade Apos Tags: " + compatibilidade);
         return compatibilidade;
-    }
-
-    public void exibirCombinacoes() {
-        catalogoCombinacao.exibirCombinacoes();
     }
 
 }

@@ -17,18 +17,18 @@ public class Conceito {
     private String descricao;
     private ArrayList<String> horarios;
     private ArrayList<Tag> tags;
-    private LocalDateTime data_criacao;
-    private LocalDateTime data_modificacao;
+    private LocalDateTime dataCriacao;
+    private LocalDateTime dataModificacao;
 
-    public Conceito(String criador, String nome, String sistema, String descricao, ArrayList<String> horarios, ArrayList<Tag> tags, LocalDateTime data_criacao, LocalDateTime data_modificacao) {
+    public Conceito(String criador, String nome, String sistema, String descricao, ArrayList<String> horarios, ArrayList<Tag> tags, LocalDateTime dataCriacao, LocalDateTime dataModificacao) {
         this.criador = criador;
         this.nome = nome;
         this.sistema = sistema;
         this.descricao = descricao;
         this.horarios = horarios;
         this.tags = tags;
-        this.data_criacao = data_criacao;
-        this.data_modificacao = data_modificacao;
+        this.dataCriacao = dataCriacao;
+        this.dataModificacao = dataModificacao;
     }
 
     public String getCriador() {
@@ -47,12 +47,12 @@ public class Conceito {
         return horarios;
     }
 
-    public LocalDateTime getData_criacao() {
-        return data_criacao;
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
     }
 
-    public LocalDateTime getData_modificacao() {
-        return data_modificacao;
+    public LocalDateTime getDataModificacao() {
+        return dataModificacao;
     }
 
     public ArrayList<Tag> getTags() {

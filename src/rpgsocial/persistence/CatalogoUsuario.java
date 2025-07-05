@@ -16,8 +16,9 @@ public class CatalogoUsuario {
         usuarios = new ArrayList<>();
     }
 
-    public void adicionar(Usuario novoUsuario) {
-        usuarios.add(novoUsuario);
+    public boolean adicionarUsuario(Usuario usuario) {
+        usuarios.add(usuario);
+        return usuarios.contains(usuario);
     }
 
     public Usuario existe(ArrayList<String> login) {
@@ -37,19 +38,27 @@ public class CatalogoUsuario {
         return null;
     }
 
-    private Usuario buscarPorEmail(String identificador) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
-    private Usuario buscarPorNome(String identificador) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public Usuario verificarSenha(Usuario usuario, ArrayList<String> login) {
-        String senha = login.get(1);
-        if (usuario.verificarSenha(senha)) {
-            return usuario;
+    public Usuario buscarPorEmail(String identificador) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getEmail().equals(identificador)) {
+                return usuario;
+            }
         }
         return null;
+    }
+
+    public Usuario buscarPorNome(String identificador) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNome().equals(identificador)) {
+                return usuario;
+            }
+        }
+        return null;
+    }
+    
+    public boolean remover(Usuario usuario) {
+        usuarios.remove(usuario);
+        return !usuarios.contains(usuario);
     }
 }
