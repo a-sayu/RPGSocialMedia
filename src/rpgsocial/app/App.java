@@ -3,6 +3,7 @@ package rpgsocial.app;
 import java.util.ArrayList;
 import rpgsocial.controller.*;
 import rpgsocial.iu.TextUI;
+import rpgsocial.model.TipoFormulario;
 import rpgsocial.model.TipoSessao;
 import rpgsocial.model.Usuario;
 
@@ -38,11 +39,11 @@ public class App {
     private void processarDesconectado(int opcao) {
         switch (opcao) {
             case 1 -> {
-                ArrayList<String> registro = textUI.formulario("registro");
+                ArrayList<String> registro = textUI.formulario(TipoFormulario.REGISTRO);
                 controlUsuario.registrarUsuario(registro);
             }
             case 2 -> {
-                ArrayList<String> login = textUI.formulario("login");
+                ArrayList<String> login = textUI.formulario(TipoFormulario.LOGIN);
                 conectarUsuario(controlUsuario.loginUsuario(login));
             }
             case 0 ->
