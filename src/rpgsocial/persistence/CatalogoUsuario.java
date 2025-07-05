@@ -16,20 +16,20 @@ public class CatalogoUsuario {
         usuarios = new ArrayList<>();
     }
 
-    public void adicionarUsuario(Usuario novoUsuario) {
+    public void adicionar(Usuario novoUsuario) {
         usuarios.add(novoUsuario);
     }
 
-    public Usuario existeUsuario(ArrayList<String> login) {
+    public Usuario existe(ArrayList<String> login) {
         String identificador = login.get(0);
         Usuario usuarioEncontrado;
         if (identificador.contains("@")) {
-            usuarioEncontrado = buscarUsuarioPorEmail(identificador);
+            usuarioEncontrado = buscarPorEmail(identificador);
             if (usuarioEncontrado.getEmail().equals(identificador)) {
                 return usuarioEncontrado;
             }
         } else {
-            usuarioEncontrado = buscarUsuarioPorNome(identificador);
+            usuarioEncontrado = buscarPorNome(identificador);
             if (usuarioEncontrado.getNome().equals(identificador)) {
                 return usuarioEncontrado;
             }
@@ -37,11 +37,11 @@ public class CatalogoUsuario {
         return null;
     }
 
-    private Usuario buscarUsuarioPorEmail(String identificador) {
+    private Usuario buscarPorEmail(String identificador) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private Usuario buscarUsuarioPorNome(String identificador) {
+    private Usuario buscarPorNome(String identificador) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
